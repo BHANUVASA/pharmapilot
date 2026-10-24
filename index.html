@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1769AA">
+<meta name="description" content="PharmPilot helps Pharm.D students learn pharmacy, think clinically, and discover tomorrow.">
+<title>PharmPilot | Learn Pharmacy. Think Clinically.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --blue: #1769AA;
+  --blue-dark: #104E85;
+  --teal: #009688;
+  --ink: #172B4D;
+  --muted: #64748B;
+  --bg: #F4F8FC;
+  --white: #FFFFFF;
+  --border: #E3EBF4;
+  --shadow: 0 8px 30px rgba(23, 65, 105, .07);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--ink);
+  background: var(--white);
+  line-height: 1.6;
+}
+
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+
+.container {
+  width: min(1160px, 92%);
+  margin: auto;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,.96);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+}
+
+.nav {
+  min-height: 76px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 23px;
+  font-weight: 800;
+  color: var(--blue);
+  letter-spacing: -.8px;
+}
+
+.logo-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  color: white;
+  background: linear-gradient(135deg, var(--blue), var(--teal));
+  border-radius: 13px;
+  font-size: 25px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #42536A;
+}
+
+.nav-links a:hover { color: var(--blue); }
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: .2s;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: white;
+  box-shadow: 0 5px 14px rgba(23,105,170,.16);
+}
+
+.btn-primary:hover {
+  background: var(--blue-dark);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: white;
+  color: var(--blue);
+  border-color: #C8DCEC;
+}
+
+.btn-outline:hover { background: #EFF7FF; }
+
+.menu-toggle {
+  display: none;
+  border: 0;
+  background: transparent;
+  color: var(--blue);
+  font-size: 28px;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 56px 0 64px;
+  background:
+    radial-gradient(circle at 8% 20%, rgba(180, 220, 250, .48), transparent 32%),
+    linear-gradient(135deg, #f2f8ff 0%, #ffffff 55%, #effaf8 100%);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, .82fr) minmax(0, 1.18fr);
+  align-items: center;
+  gap: clamp(28px, 4vw, 58px);
+  min-height: 500px;
+}
+.hero-visual {
+  position: relative;
+  min-width: 0;
+  min-height: 440px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  isolation: isolate;
+  border-radius: 30px;
+  background:
+    radial-gradient(ellipse at 50% 35%, rgba(255,255,255,.96) 0%, rgba(225,241,255,.76) 58%, rgba(208,232,250,.35) 100%);
+}
+.hero-visual::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(23,105,170,.10);
+  border-radius: 24px;
+  z-index: -1;
+}
+.hero-image {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 490px;
+  height: auto;
+  max-height: 560px;
+  object-fit: contain;
+  object-position: bottom center;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  filter: drop-shadow(0 18px 24px rgba(29, 68, 104, .12));
+}
+.hero-copy {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 18px 0;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-radius: 30px;
+  color: var(--blue);
+  background: #E3F0FF;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 22px;
+}
+
+.eyebrow span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--teal);
+}
+
+h1 {
+  font-size: clamp(38px, 4.7vw, 59px);
+  line-height: 1.12;
+  letter-spacing: -2.5px;
+  font-weight: 800;
+  max-width: 610px;
+}
+
+.gradient-text {
+  color: var(--blue);
+}
+
+.hero-description {
+  max-width: 510px;
+  margin: 22px 0 28px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
+  max-width: 560px;
+}
+
+.hero-actions .btn {
+  min-height: 48px;
+  border-radius: 11px;
+  box-shadow: 0 7px 20px rgba(23, 105, 170, .14);
+}
+
+.hero-actions .btn-outline {
+  background: rgba(255,255,255,.96);
+  border: 1px solid #a9cbe6;
+}
+
+.hero-actions .btn-outline:hover {
+  background: #e5f3ff;
+  border-color: var(--blue);
+}
+
+.trust-row {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  margin-top: 30px;
+  color: #52657A;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.trust-item { display: flex; align-items: center; gap: 6px; }
+.check { color: var(--teal); font-weight: 800; }
+
+.floating-card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 18px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+.floating-card.top { top: -22px; right: -18px; }
+.floating-card.bottom { bottom: -20px; left: -22px; }
+
+.float-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #E5F7F3;
+  font-size: 22px;
+}
+
+.floating-card strong { display: block; font-size: 13px; }
+.floating-card small { color: var(--muted); font-size: 11px; }
+
+.section { padding: 78px 0; }
+.section-soft { background: var(--bg); }
+
+.section-heading {
+  text-align: center;
+  max-width: 670px;
+  margin: 0 auto 40px;
+}
+
+.section-heading .kicker {
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+}
+
+.section-heading h2 {
+  font-size: clamp(27px, 3vw, 36px);
+  letter-spacing: -1.2px;
+  line-height: 1.25;
+  margin: 10px 0;
+}
+
+.section-heading p { color: var(--muted); font-size: 14px; }
+
+.search-wrap {
+  max-width: 690px;
+  margin: 0 auto 32px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  border: 1px solid #D8E5F1;
+  border-radius: 12px;
+  padding: 7px 8px 7px 17px;
+  box-shadow: 0 5px 18px rgba(25,65,100,.04);
+}
+
+.search-box .search-icon { font-size: 20px; }
+
+.search-box input {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  outline: 0;
+  color: var(--ink);
+  padding: 10px 0;
+  background: transparent;
+  font-size: 14px;
+}
+
+.search-box input:focus { outline: none; }
+.search-box input::placeholder { color: #94A3B8; }
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.feature-card {
+  padding: 27px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: .22s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+  border-color: #BCD8F0;
+}
+
+.feature-icon {
+  display: grid;
+  place-items: center;
+  width: 53px;
+  height: 53px;
+  border-radius: 14px;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.icon-blue { background: #E7F1FF; }
+.icon-teal { background: #E1F7F2; }
+.icon-purple { background: #F0EAFE; }
+.icon-orange { background: #FFF1E3; }
+.icon-green { background: #E8F6E8; }
+.icon-pink { background: #FDECF3; }
+
+.feature-card h3 { font-size: 17px; margin-bottom: 9px; }
+.feature-card p { color: var(--muted); font-size: 13px; line-height: 1.8; }
+.card-link { display: inline-block; color: var(--blue); font-size: 13px; font-weight: 700; margin-top: 17px; }
+.card-link span { margin-left: 5px; }
+
+.year-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.year-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 23px;
+  transition: .2s;
+}
+
+.year-card:hover {
+  border-color: var(--teal);
+  box-shadow: var(--shadow);
+  transform: translateY(-3px);
+}
+
+.year-number {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.year-card h3 { font-size: 19px; margin: 8px 0; }
+.year-card p { font-size: 12px; color: var(--muted); min-height: 40px; }
+.year-card .card-link { margin-top: 15px; }
+
+.cta {
+  padding: 42px;
+  border-radius: 22px;
+  background: linear-gradient(110deg, #1769AA, #178C9A);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.cta h2 { font-size: clamp(25px, 3vw, 34px); line-height: 1.3; }
+.cta p { color: #E5F4FF; margin-top: 10px; font-size: 14px; }
+.cta .btn { background: white; color: var(--blue); flex-shrink: 0; }
+.cta .btn:hover { background: #EAF5FF; }
+
+footer {
+  background: #F7FAFD;
+  border-top: 1px solid var(--border);
+  padding: 34px 0;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-brand p { font-size: 12px; color: var(--muted); margin-top: 7px; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 20px; font-size: 12px; color: #52657A; }
+.copyright { width: 100%; border-top: 1px solid var(--border); padding-top: 20px; color: var(--muted); font-size: 11px; }
+
+#searchMessage {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+@media (max-width: 950px) {
+  .nav-links { gap: 13px; font-size: 12px; }
+  .nav-cta { display: none; }
+  .hero-grid { gap: 35px; }
+  .hero-copy { width: min(590px, 58%); }
+  .year-grid { grid-template-columns: repeat(2, 1fr); }
+  .floating-card.top { right: -8px; }
+  .floating-card.bottom { left: -8px; }
+}
+
+@media (max-width: 720px) {
+  .nav { min-height: 68px; }
+  .menu-toggle { display: block; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    width: 100%;
+    padding: 18px 5% 22px;
+    background: white;
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 11px 0; font-size: 14px; }
+  .hero { padding: 42px 0 48px; min-height: 700px; }
+  .hero-grid { display: flex; min-height: 610px; align-items: flex-end; }
+  .hero-copy { width: 100%; max-width: 600px; margin: 0; padding: 24px 20px; border-radius: 18px; background: rgba(255,255,255,.92); box-shadow: 0 12px 36px rgba(25,65,100,.13); backdrop-filter: blur(8px); }
+  .hero-image { object-position: 24% center; }
+  .hero-visual::after { background: linear-gradient(180deg, rgba(255,255,255,.02) 0%, rgba(240,248,255,.12) 36%, rgba(240,248,255,.72) 58%, rgba(240,248,255,.98) 100%); }
+  h1 { letter-spacing: -1.6px; }
+  .hero-description { font-size: 14px; }
+  .section { padding: 58px 0; }
+  .feature-grid { grid-template-columns: 1fr; gap: 14px; }
+  .feature-card { padding: 23px; }
+  .cta { padding: 30px 23px; align-items: flex-start; flex-direction: column; }
+  .footer-content { align-items: flex-start; flex-direction: column; }
+  .trust-row { flex-wrap: wrap; }
+}
+
+@media (max-width: 420px) {
+  .logo { font-size: 20px; }
+  .logo-icon { width: 37px; height: 37px; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; }
+  .year-grid { grid-template-columns: 1fr; }
+  .search-box { flex-wrap: wrap; }
+  .search-box .btn { width: 100%; }
+  .floating-card strong { font-size: 11px; }
+  .floating-card small { font-size: 10px; }
+}
+
+/* PharmPilot student-first hero refresh */
+.hero {
+  min-height: 0;
+  padding: clamp(28px, 4vw, 56px) 0 clamp(42px, 5vw, 68px);
+  background: radial-gradient(circle at 8% 18%, #e4f3ff 0, transparent 34%),
+              radial-gradient(circle at 94% 16%, #e2f8f2 0, transparent 30%),
+              linear-gradient(135deg, #f7fbff 0%, #ffffff 58%, #f5fbff 100%);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(300px, .88fr) minmax(0, 1.12fr);
+  gap: clamp(26px, 4vw, 58px);
+  align-items: center;
+  min-height: 0;
+}
+.hero-visual {
+  order: -1;
+  position: relative;
+  inset: auto;
+  z-index: 0;
+  min-width: 0;
+  width: 100%;
+  height: clamp(390px, 42vw, 565px);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  border: 1px solid rgba(184, 216, 243, .8);
+  border-radius: 32px;
+  background: radial-gradient(ellipse at 48% 34%, rgba(255,255,255,.96) 0, rgba(231,245,255,.92) 46%, rgba(215,237,252,.9) 100%);
+  box-shadow: 0 22px 58px rgba(28, 83, 129, .12);
+}
+.hero-visual::before {
+  content: "";
+  position: absolute;
+  width: 76%;
+  aspect-ratio: 1;
+  top: 8%;
+  left: 12%;
+  border-radius: 50%;
+  background: linear-gradient(145deg, rgba(255,255,255,.88), rgba(194,230,252,.55));
+  border: 1px solid rgba(255,255,255,.75);
+}
+.hero-visual::after { display: none; }
+.hero-image {
+  position: relative;
+  inset: auto;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center bottom;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  filter: drop-shadow(0 12px 18px rgba(20, 55, 89, .10));
+}
+.hero-copy {
+  width: auto;
+  max-width: 660px;
+  margin: 0;
+  padding: 12px 0;
+}
+.eyebrow { margin-bottom: 18px; }
+h1 { font-size: clamp(37px, 4.2vw, 61px); letter-spacing: -2.3px; line-height: 1.08; }
+.gradient-text { background: linear-gradient(100deg, #1769aa 0%, #008f91 95%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero-description { margin: 19px 0 24px; max-width: 560px; font-size: 15px; line-height: 1.8; }
+.hero-actions { gap: 10px; max-width: 100%; }
+.hero-actions .btn { padding: 12px 16px; min-height: 46px; }
+.trust-row { flex-wrap: wrap; gap: 10px 17px; margin-top: 22px; }
+.student-badge {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border: 1px solid rgba(215, 230, 242, .95);
+  border-radius: 15px;
+  background: rgba(255,255,255,.94);
+  box-shadow: 0 12px 28px rgba(25, 65, 100, .12);
+  backdrop-filter: blur(10px);
+  max-width: calc(100% - 24px);
+}
+.student-badge-top { top: 22px; left: 18px; }
+.student-badge-bottom { right: 16px; bottom: 20px; }
+.student-badge-icon, .student-badge-check { width: 35px; height: 35px; display: grid; place-items: center; flex: 0 0 35px; border-radius: 11px; background: #e2f7f1; color: #087e73; font-size: 19px; font-weight: 800; }
+.student-badge-check { background: #e5f0ff; color: #1769aa; }
+.student-badge strong { display: block; font-size: 11px; line-height: 1.35; color: #173b5d; }
+.student-badge small { display: block; margin-top: 2px; color: #6b7e90; font-size: 10px; line-height: 1.35; }
+.feature-card, .year-card { box-shadow: 0 8px 25px rgba(24, 70, 110, .035); }
+.feature-card:focus-within, .year-card:focus-within { outline: 3px solid rgba(23,105,170,.16); outline-offset: 2px; }
+@media (max-width: 950px) {
+  .hero-grid { grid-template-columns: minmax(260px, .82fr) minmax(0, 1.18fr); gap: 25px; }
+  .hero-visual { height: clamp(360px, 48vw, 480px); }
+  .hero-copy { width: auto; }
+  h1 { font-size: clamp(34px, 4.5vw, 49px); }
+  .hero-actions .btn { font-size: 12px; padding: 11px 13px; }
+}
+@media (max-width: 720px) {
+  .hero { padding: 26px 0 38px; min-height: 0; }
+  .hero-grid { display: flex; flex-direction: column; align-items: stretch; gap: 24px; min-height: 0; }
+  .hero-visual { order: -1; width: 100%; max-width: 460px; height: clamp(320px, 88vw, 430px); margin: 0 auto; border-radius: 25px; }
+  .hero-copy { width: 100%; max-width: 620px; padding: 0; border-radius: 0; background: transparent; box-shadow: none; backdrop-filter: none; }
+  .eyebrow { font-size: 10px; margin-bottom: 14px; }
+  h1 { font-size: clamp(35px, 8vw, 48px); letter-spacing: -1.5px; }
+  .hero-description { font-size: 14px; line-height: 1.75; margin: 16px 0 20px; }
+  .hero-actions { display: grid; grid-template-columns: 1fr; }
+  .hero-actions .btn { width: 100%; min-height: 47px; font-size: 13px; }
+  .trust-row { margin-top: 18px; }
+  .student-badge-top { top: 12px; left: 12px; }
+  .student-badge-bottom { right: 12px; bottom: 12px; }
+}
+@media (max-width: 420px) {
+  .hero-visual { height: 330px; }
+  .student-badge { gap: 7px; padding: 8px 10px; }
+  .student-badge-icon, .student-badge-check { width: 29px; height: 29px; flex-basis: 29px; }
+  .student-badge strong { font-size: 10px; }
+  .student-badge small { font-size: 9px; }
+  .trust-row { font-size: 11px; }
+}
+
+
+@media (max-width: 900px) {
+  .hero { padding: 34px 0 48px; }
+  .hero-grid { grid-template-columns: minmax(230px, .78fr) minmax(0, 1fr); gap: 24px; min-height: 0; }
+  .hero-visual { min-height: 380px; border-radius: 24px; }
+  .hero-image { max-height: 470px; }
+  .hero-copy { padding: 10px 0; }
+  .trust-row { flex-wrap: wrap; gap: 10px 14px; }
+}
+@media (max-width: 640px) {
+  .hero { padding: 24px 0 42px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 22px; }
+  .hero-visual { order: 0; min-height: 0; max-height: 390px; overflow: hidden; }
+  .hero-image { width: min(100%, 360px); max-height: 390px; }
+  .hero-copy { order: 1; padding: 0; }
+  .eyebrow { margin-bottom: 14px; }
+  h1 { letter-spacing: -1.5px; }
+  .hero-description { margin: 16px 0 22px; font-size: 15px; line-height: 1.75; }
+  .hero-actions { display: grid; grid-template-columns: 1fr; max-width: none; }
+  .hero-actions .btn { width: 100%; }
+  .trust-row { margin-top: 20px; font-size: 11px; }
+}
+
+</style>
+</head>
+
+<body>
+<style id="pharmpilot-global-nav-style">
+#pharmpilot-global-nav{position:sticky;top:0;z-index:99999;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;padding:10px 14px;background:rgba(255,255,255,.97);border-bottom:1px solid #dce6f0;box-shadow:0 4px 18px rgba(23,55,90,.07);font:600 13px/1.3 Inter,Segoe UI,Arial,sans-serif}
+#pharmpilot-global-nav a{display:inline-block;color:#174e78;text-decoration:none;padding:9px 13px;border:1px solid #dce6f0;border-radius:999px;background:#f8fbff}
+#pharmpilot-global-nav a:hover,#pharmpilot-global-nav a:focus-visible{background:#eaf4ff;border-color:#9dc9e9;outline:2px solid transparent}
+#pharmpilot-global-nav .brand{font-weight:850;color:#1769aa;background:#edf6ff}
+@media(max-width:520px){#pharmpilot-global-nav{gap:5px;padding:8px 6px}#pharmpilot-global-nav a{font-size:11px;padding:8px 9px}}
+</style>
+<nav id="pharmpilot-global-nav" aria-label="PharmPilot site navigation">
+<a class="brand" href="index.html">✚ PharmPilot Home</a>
+<a href="clinical.html">Clinical Pharmacy</a>
+<a href="future-scope.html">Future Scope</a>
+<a href="research.html">Research &amp; Innovation</a>
+</nav>
+
+
+<header>
+  <div class="container nav">
+    <a href="#home" class="logo" aria-label="PharmPilot home">
+      <span class="logo-icon">✚</span>
+      <span>PharmPilot</span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle"
+      aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="quiz-center.html">Quiz Center</a>
+      <a href="future-scope.html">Future Scope</a>
+      <a href="#about">About</a>
+    </nav>
+
+    <a href="#study" class="btn btn-primary nav-cta">Explore Learning ↗</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-visual">
+        <img class="hero-image" src="assets/pharmd-student.png" alt="Pharm.D student in a white lab coat holding pharmacy study books" loading="eager" fetchpriority="high">
+        <div class="student-badge student-badge-top"><span class="student-badge-icon">✦</span><span><strong>Future Pharmacist</strong><small>Learn · Practice · Grow</small></span></div>
+        <div class="student-badge student-badge-bottom"><span class="student-badge-check">✓</span><span><strong>Built for Pharm.D</strong><small>Study smarter every day</small></span></div>
+      </div>
+
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> YOUR PHARMACY LEARNING COMPANION</div>
+
+        <h1>Master Pharmacy.<br>Build <span class="gradient-text">Clinical Confidence.</span></h1>
+
+        <p class="hero-description">
+          Your journey from classroom learning to clinical thinking starts here.
+          Explore study materials, test your knowledge, understand clinical cases,
+          and discover the future of pharmaceutical research.
+        </p>
+
+        <div class="hero-actions">
+          <a href="study-materials.html" class="btn btn-primary">Study Materials →</a>
+          <a href="clinical.html" class="btn btn-outline">Clinical Pharmacy →</a>
+          <a href="research.html" class="btn btn-outline">Research &amp; Innovation →</a>
+        </div>
+
+        <div class="trust-row">
+          <div class="trust-item"><span class="check">✓</span> Student-focused learning</div>
+          <div class="trust-item"><span class="check">✓</span> Clinical thinking</div>
+          <div class="trust-item"><span class="check">✓</span> Research discovery</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="study">
+    <div class="container">
+      <div class="section-heading">
+        <span class="kicker">Your learning space</span>
+        <h2>Everything You Need to Learn Smarter</h2>
+        <p>Find your next topic, strengthen your fundamentals, and connect pharmacy knowledge with clinical practice.</p>
+      </div>
+
+      <div class="search-wrap">
+        <form class="search-box" id="searchForm">
+          <span class="search-icon">⌕</span>
+          <input id="siteSearch" type="search"
+            placeholder="Search subjects, topics, notes..."
+            aria-label="Search learning sections">
+          <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+        <p id="searchMessage" aria-live="polite"></p>
+      </div>
+
+      <div class="feature-grid" id="featureGrid">
+        <article class="feature-card" data-search="study materials notes subjects chapters syllabus flashcards">
+          <div class="feature-icon icon-blue">📘</div>
+          <h3>Study Materials</h3>
+          <p>Organized learning resources, revision notes, chapter summaries, and flashcards for pharmacy subjects.</p>
+          <a class="card-link" href="study-materials.html">Explore subjects <span>→</span></a>
+        </article>
+
+        <article class="feature-card" data-search="quiz center mcq practice tests questions score">
+          <div class="feature-icon icon-teal">🧠</div>
+          <h3>Quiz Center</h3>
+          <p>Prepare with practice questions, topic-based revision, and knowledge checks.</p>
+          <a class="card-link" href="quiz-center.html">Start an interactive quiz <span>→</span></a>
+        </article>
+
+        <article class="feature-card" id="clinical" data-search="clinical pharmacy diseases cases patient care therapeutics">
+          <div class="feature-icon icon-purple">🩺</div>
+          <h3>Clinical Pharmacy</h3>
+          <p>Connect pharmacology and therapeutics with disease concepts, patient care, and clinical case discussions.</p>
+          <a class="card-link" href="clinical.html">Explore clinical learning <span>→</span></a>
+        </article>
+
+        <article class="feature-card" id="research" data-search="research innovation drug discovery pharmacology toxicology ai">
+          <div class="feature-icon icon-orange">🔬</div>
+          <h3>Research &amp; Innovation</h3>
+          <p>Explore drug discovery, pharmaceutical research, scientific methods, and emerging technologies.</p>
+          <a class="card-link" href="research.html">Discover research <span>→</span></a>
+        </article>
+
+        <article class="feature-card" id="future-scope" data-search="future scope career opportunities pharmacy profession growth">
+          <div class="feature-icon icon-green">🚀</div>
+          <h3>Future Scope</h3>
+          <p>Explore career opportunities, professional growth, and the evolving landscape of Pharm.D and pharmacy practice.</p>
+          <a class="card-link" href="future-scope.html">Explore future scope <span>→</span></a>
+        </article>
+
+        <article class="feature-card" data-search="mind maps flowcharts diagrams revision memory">
+          <div class="feature-icon icon-pink">🗺️</div>
+          <h3>Mind Maps &amp; Revision</h3>
+          <p>Break down complex topics into clear concepts, memorable structures, and revision-friendly summaries.</p>
+          <a class="card-link" href="#years">Start revising <span>→</span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft" id="years">
+    <div class="container">
+      <div class="section-heading">
+        <span class="kicker">Your Pharm.D journey</span>
+        <h2>Learn Year by Year</h2>
+        <p>Choose your academic year to find relevant subjects and learning resources. Content can be connected as it is developed.</p>
+      </div>
+
+      <div class="year-grid">
+        <a class="year-card" href="#study" data-year="1">
+          <span class="year-number">YEAR 01</span>
+          <h3>First Year</h3>
+          <p>Build foundations in pharmaceutical and biomedical sciences.</p>
+          <span class="card-link">Explore year one →</span>
+        </a>
+
+        <a class="year-card" href="#study" data-year="2">
+          <span class="year-number">YEAR 02</span>
+          <h3>Second Year</h3>
+          <p>Study pathophysiology, pharmacology, microbiology, and therapeutics.</p>
+          <span class="card-link">Explore year two →</span>
+        </a>
+
+        <a class="year-card" href="#study" data-year="3">
+          <span class="year-number">YEAR 03</span>
+          <h3>Third Year</h3>
+          <p>Develop deeper pharmaceutical and clinical knowledge.</p>
+          <span class="card-link">Explore year three →</span>
+        </a>
+
+        <a class="year-card" href="#study" data-year="4">
+          <span class="year-number">YEAR 04</span>
+          <h3>Fourth Year</h3>
+          <p>Continue advanced learning in therapeutics and patient care.</p>
+          <span class="card-link">Explore year four →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container">
+      <div class="cta" id="cta">
+        <div>
+          <h2>Learn Pharmacy.<br>Think Clinically. Discover Tomorrow.</h2>
+          <p>Build strong fundamentals today. Prepare for the clinical and research challenges of tomorrow.</p>
+        </div>
+        <a href="#study" class="btn">Explore PharmPilot ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-content">
+    <div class="footer-brand">
+      <a href="#home" class="logo"><span class="logo-icon">✚</span><span>PharmPilot</span></a>
+      <p>Learn Pharmacy. Think Clinically. Discover Tomorrow.</p>
+    </div>
+
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="study-materials.html">Study Materials</a>
+      <a href="clinical.html">Clinical Pharmacy</a>
+      <a href="research.html">Research &amp; Innovation</a>
+      <a href="#about">About</a>
+    </div>
+
+    <div class="copyright">
+      © <span id="yearNow"></span> PharmPilot. Educational resources are intended to support learning, not replace professional clinical judgment.
+    </div>
+  </div>
+</footer>
+
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+menuToggle.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  menuToggle.setAttribute('aria-expanded', String(isOpen));
+  menuToggle.textContent = isOpen ? '✕' : '☰';
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.textContent = '☰';
+  });
+});
+
+document.getElementById('yearNow').textContent = new Date().getFullYear();
+
+const searchForm = document.getElementById('searchForm');
+const searchInput = document.getElementById('siteSearch');
+const searchMessage = document.getElementById('searchMessage');
+const featureCards = [...document.querySelectorAll('.feature-card')];
+const yearCards = [...document.querySelectorAll('.year-card')];
+
+searchForm.addEventListener('submit', event => {
+  event.preventDefault();
+
+  const query = searchInput.value.trim().toLowerCase();
+
+  if (!query) {
+    searchMessage.textContent = 'Enter a subject or topic to search.';
+    featureCards.forEach(card => card.style.display = '');
+    yearCards.forEach(card => card.style.display = '');
+    return;
+  }
+
+  let matches = 0;
+
+  featureCards.forEach(card => {
+    const content = (card.innerText + ' ' + card.dataset.search).toLowerCase();
+    const match = content.includes(query);
+    card.style.display = match ? '' : 'none';
+    if (match) matches++;
+  });
+
+  yearCards.forEach(card => {
+    const content = card.innerText.toLowerCase();
+    const match = content.includes(query) ||
+      (query.includes('first') && card.dataset.year === '1') ||
+      (query.includes('second') && card.dataset.year === '2') ||
+      (query.includes('third') && card.dataset.year === '3') ||
+      (query.includes('fourth') && card.dataset.year === '4');
+
+    card.style.display = match ? '' : 'none';
+    if (match) matches++;
+  });
+
+  searchMessage.textContent = matches
+    ? `${matches} matching section(s) found on this homepage.`
+    : 'No matching homepage sections. Try "clinical", "research", "notes", or "quiz".';
+
+  document.getElementById('study').scrollIntoView({ behavior: 'smooth' });
+});
+
+searchInput.addEventListener('input', () => {
+  if (!searchInput.value.trim()) {
+    featureCards.forEach(card => card.style.display = '');
+    yearCards.forEach(card => card.style.display = '');
+    searchMessage.textContent = '';
+  }
+});
+
+document.querySelectorAll('.year-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const year = card.dataset.year;
+    sessionStorage.setItem('pharmpilotSelectedYear', year);
+  });
+});
+</script>
+
+</body>
+</html>
